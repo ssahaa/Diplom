@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "*"
+django = "*"
+psycopg2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+
+[scripts]
+start = "python diplom_back/manage.py runserver"
+start-grpc = "python diplom_back/manage.py grpcrunaioserver --dev -v 3"
+migrations-make = "python diplom_back/manage.py makemigrations"
+migrate = "python diplom_back/manage.py migrate"
