@@ -18,15 +18,21 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from rest_framework import routers
-from api.views import WorkerGradeViewSet, UserViewSet
-
+from api.views import WorkerGradeViewSet, UserViewSet,GOSTViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 router = routers.DefaultRouter()
 
 router.register(r'WorkerGrade', WorkerGradeViewSet)
 router.register(r'User', UserViewSet)
-
+router.register(r'GOST', GOSTViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

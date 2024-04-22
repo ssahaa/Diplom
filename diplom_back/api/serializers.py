@@ -1,4 +1,4 @@
-from .models import User, WorkerGrade
+from .models import User, WorkerGrade, GOST
 from rest_framework import serializers
 
 
@@ -10,6 +10,11 @@ class WorkerGradeSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['userName', 'userSurname', 'userMiddleName', 'WorkerGrade', 'creationDate',"lastModified"]
+        fields = ['id', 'userName', 'userSurname', 'userMiddleName', 'WorkerGrade', 'creationDate',"lastModified"]
+
+class GOSTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GOST
+        fields = ['gostName','file', 'idCreator', 'creationDate', 'lastModified']
 
 

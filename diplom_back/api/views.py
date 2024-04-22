@@ -13,4 +13,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
 
-    
+
+class GOSTViewSet(viewsets.ModelViewSet):
+    queryset = GOST.objects.all().order_by('id')
+    serializer_class = GOSTSerializer

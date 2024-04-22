@@ -20,4 +20,19 @@ class User(models.Model):
     lastModified = models.DateField(auto_now=True, null=False, blank=False)
 
     def __str__(self):
-        return f"{self.userSurname}, {self.userName},  {self.userMiddleName}"
+        return f"{self.userSurname} {self.userName} {self.userMiddleName}"
+
+
+
+class GOST(models.Model):
+    gostName = models.CharField(blank=False, db_column='GostName', default="No name", unique=False, null=False, max_length=128)
+    creationDate = models.DateField(null=False, blank=False, auto_now_add=True)
+    lastModified = models.DateField(auto_now=True, null=False, blank=False)
+    file = models.FileField(upload_to ='GOST')
+    idCreator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.gostName
+
+
+    
