@@ -18,6 +18,7 @@ class User(models.Model):
     WorkerGrade = models.ForeignKey(WorkerGrade, on_delete=models.CASCADE, null=False, blank=False, verbose_name='id должности')
     creationDate = models.DateField(null=False, blank=False, auto_now_add=True, verbose_name='Дата создания')
     lastModified = models.DateField(auto_now=True, null=False, blank=False, verbose_name='Дата последнего изменения')
+    password = models.CharField(blank=False, db_column='password', default="pass123", unique=False, null=False, max_length=128, verbose_name='Пароль')
 
     def __str__(self):
         return f"{self.userSurname} {self.userName} {self.userMiddleName}"
