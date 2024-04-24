@@ -1,11 +1,11 @@
-from .models import User, WorkerGrade, GOST
+from .models import User, WorkerGrade, GOST, GOST_DOCK, TP, oldTP, Agreement, oldAgreement
 from rest_framework import serializers
 
 
 class WorkerGradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkerGrade
-        fields = ['salary', 'accessLevel', 'gradeName']
+        fields = ['id', 'salary', 'accessLevel', 'gradeName']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +15,30 @@ class UserSerializer(serializers.ModelSerializer):
 class GOSTSerializer(serializers.ModelSerializer):
     class Meta:
         model = GOST
-        fields = ['gostName','file', 'idCreator', 'creationDate', 'lastModified']
+        fields = ['id', 'gostName','file', 'idCreator', 'creationDate', 'lastModified']
 
+class GOSTDOCKSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GOST_DOCK
+        fields = ['id', 'idGOST', 'idDOCK']
+
+class TPSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TP
+        fields = ['id', 'currentVersionTP', 'creationDate', 'lastModified', 'needForChange', 'idCreator', "comment", 'newDockVersion']
+
+class oldTPSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = oldTP
+        fields = ['id', 'creationDate', 'dock', 'idTP']
+
+class AgreemdetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Agreement
+        fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','inspector']
+
+class OldAgreemdetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = oldAgreement
+        fields = ['id', 'idAgreement', 'creationDate', 'comment','commentOLD']
 

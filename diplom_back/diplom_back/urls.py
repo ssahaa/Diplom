@@ -18,14 +18,19 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from rest_framework import routers
-from api.views import WorkerGradeViewSet, UserViewSet,GOSTViewSet
+from api.views import WorkerGradeViewSet, UserViewSet, GOSTViewSet, GOSTDOCViewSet, TPViewSet, OldTPViewSet, AgreementTPViewSet, oldAgreementTPViewSet
 from django.conf import settings
 from django.conf.urls.static import static
 router = routers.DefaultRouter()
 
-router.register(r'WorkerGrade', WorkerGradeViewSet)
-router.register(r'User', UserViewSet)
-router.register(r'GOST', GOSTViewSet)
+router.register(r'Должности', WorkerGradeViewSet)
+router.register(r'Пользователи', UserViewSet)
+router.register(r'ГОСТ', GOSTViewSet)
+router.register(r'Связь ГОСТ и ТП', GOSTDOCViewSet)
+router.register(r'ТП', TPViewSet )
+router.register(r'Старые ТП', OldTPViewSet)
+router.register(r'Согласование ТП', AgreementTPViewSet )
+router.register(r'Старые согласования', oldAgreementTPViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

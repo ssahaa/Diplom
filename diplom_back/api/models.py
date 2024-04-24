@@ -53,7 +53,7 @@ class oldTP(models.Model):
     dock = models.FileField(upload_to ='TPold', null=False, blank=False, verbose_name='ТП документ')
     idTP = models.ForeignKey(TP, on_delete=models.CASCADE, null=False, blank=False, verbose_name='id ТП')
 
-class Agreements(models.Model):
+class Agreement(models.Model):
     class Meta:
         # делает уникальным направление обмена
         unique_together = ("creator", "inspector")
@@ -69,7 +69,7 @@ class Agreements(models.Model):
     inspector = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="inspectorARG", verbose_name='id Согласующего')
 
 class oldAgreement(models.Model):
-    idAgreement = models.ForeignKey(Agreements, on_delete=models.CASCADE, verbose_name='id согласования')
+    idAgreement = models.ForeignKey(Agreement, on_delete=models.CASCADE, verbose_name='id согласования')
     creationDate = models.DateField(null=False, blank=False, auto_now_add=True, verbose_name='Дата создания')
     comment = models.CharField(blank=False, db_column='comment', default="No comment", unique=False, null=False, max_length=256, verbose_name='Комментарий')
     commentOLD = models.CharField(blank=False, db_column='commentOLD', default="No old comment", unique=False, null=False, max_length=256, verbose_name='Комментарий 2')
