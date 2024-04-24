@@ -25,7 +25,7 @@ class GOSTDOCKSerializer(serializers.ModelSerializer):
 class TPSerializer(serializers.ModelSerializer):
     class Meta:
         model = TP
-        fields = ['id', 'currentVersionTP', 'creationDate', 'lastModified', 'needForChange', 'idCreator', "comment", 'newDockVersion']
+        fields = ['id','TpName', 'currentVersionTP', 'creationDate', 'lastModified', 'needForChange', 'idCreator', "comment", 'newDockVersion']
 
 class oldTPSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,7 +35,7 @@ class oldTPSerializer(serializers.ModelSerializer):
 class AgreemdetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agreement
-        fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','inspector']
+        fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','inspector','idActual']
 
 class OldAgreemdetSerializer(serializers.ModelSerializer):
     class Meta:
