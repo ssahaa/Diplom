@@ -19,6 +19,7 @@ class User(models.Model):
     creationDate = models.DateField(null=False, blank=False, auto_now_add=True, verbose_name='Дата создания')
     lastModified = models.DateField(auto_now=True, null=False, blank=False, verbose_name='Дата последнего изменения')
     password = models.CharField(blank=False, db_column='password', default="pass123", unique=False, null=False, max_length=128, verbose_name='Пароль')
+    login = models.CharField(blank=False, db_column='Login', default="Login123", unique=False, null=False, max_length=128, verbose_name='Логин')
 
     def __str__(self):
         return f"{self.userSurname} {self.userName} {self.userMiddleName}"

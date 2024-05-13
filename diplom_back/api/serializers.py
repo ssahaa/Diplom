@@ -10,7 +10,7 @@ class WorkerGradeSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'userName', 'userSurname', 'userMiddleName', 'WorkerGrade', 'creationDate',"lastModified","password"]
+        fields = ['id', 'userName', 'userSurname', 'userMiddleName', 'WorkerGrade', 'creationDate', "lastModified", "password", "login"]
 
 class GOSTSerializer(serializers.ModelSerializer):
     class Meta:
