@@ -48,7 +48,6 @@ class TP(models.Model):
     idCreator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='id создателя')
     comment = models.CharField(blank=False, db_column='comment', default="No name", unique=False, null=False, max_length=256, verbose_name='Комментарий')
     newDockVersion = models.FileField(upload_to ='TP', null=True, blank=True, verbose_name='Несогласованная версия ТП')
-
     def __str__(self) -> str:
         return f"{self.TpName}"
 
@@ -61,11 +60,11 @@ class oldTP(models.Model):
         return f" ТП на {self.idTP.TpName} от {self.creationDate}"
 
 class Agreement(models.Model):
-    class Meta:
+   # class Meta:
         # делает уникальным направление обмена
-        unique_together = ("creator", "inspector")
+    #    unique_together = ("creator", "inspector")
 
-    idTP = models.ForeignKey(TP, on_delete=models.CASCADE, null=False, blank=False, verbose_name='id ТП')
+    idTP = models.ForeignKey(TP, on_delete=models.CASCADE, null=True, verbose_name='id ТП')
     creationDate = models.DateField(null=False, blank=False, auto_now_add=True, verbose_name='Дата создания')
     lastModified = models.DateField(auto_now=True, null=False, blank=False, verbose_name='Дата последнего изменения')
     result = models.BooleanField(default=False, null=False, blank=False, verbose_name='Результата согласования')
@@ -73,11 +72,12 @@ class Agreement(models.Model):
     commentOLD = models.CharField(blank=False, db_column='commentOLD', default="No old comment", unique=False, null=False, max_length=256, verbose_name='Комментарий 2')
     dock = models.FileField(upload_to ='Agreement', null=False, blank=False, verbose_name='Документ для рассмотрения')
     creator = models.ForeignKey(User, on_delete=models.CASCADE, null=False,blank=False, related_name="creatorARG", verbose_name='id Создателя документа')
-    inspector = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="inspectorARG", verbose_name='id Согласующего')
-    idActual = models.BooleanField(default=True, null=False, blank=False, verbose_name='Актуальность')
-
+    #inspector = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="inspectorARG", verbose_name='id Согласующего')
+    isActual = models.BooleanField(default=True, null=False, blank=False, verbose_name='Актуальность')
+    idTpStringNew = models.CharField(blank=False, db_column='TPAllGostId', default="-", unique=False, null=False, max_length=256, verbose_name='Все Id Гостов')
+    NewName = models.CharField(blank=False, db_column='NewName', unique=False, null=True, max_length=256, verbose_name='Новое наименование')
     def __str__(self) -> str:
-        return f" Согласование  ТП: {self.idTP.TpName} от {self.creationDate}"
+        return f"{f"Создание ТП {self.NewName}"  if self.idTP is None else f"Изменение ТП {self.idTP.TpName}"} от {self.creationDate}"
 
 class oldAgreement(models.Model):
     idAgreement = models.ForeignKey(Agreement, on_delete=models.CASCADE, verbose_name='id согласования')

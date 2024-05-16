@@ -35,7 +35,8 @@ class oldTPSerializer(serializers.ModelSerializer):
 class AgreemdetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agreement
-        fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','inspector','idActual']
+        fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','isActual','idTpStringNew', 'NewName']
+       # fields = ['id', 'idTP', 'creationDate', 'lastModified','result','comment','commentOLD','dock','creator','inspector','isActual','idTpStringNew']
 
 class OldAgreemdetSerializer(serializers.ModelSerializer):
     class Meta:
