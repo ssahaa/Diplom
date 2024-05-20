@@ -77,6 +77,7 @@ class Agreement(models.Model):
     idTpStringNew = models.CharField(blank=False, db_column='TPAllGostId', default="-", unique=False, null=False, max_length=256, verbose_name='Все Id Гостов')
     NewName = models.CharField(blank=False, db_column='NewName', unique=False, null=True, max_length=256, verbose_name='Новое наименование')
     IsNewTP = models.BooleanField(default=False, null=False, blank=False, verbose_name='Явлется ли новым ТП')
+    IsUserAswerCommnet = models.BooleanField(null=True, blank=False, verbose_name='Ответил ли пользователь на согласование')
     def __str__(self) -> str:
         return f"{f"Создание ТП {self.NewName}"  if self.idTP is None else f"Изменение ТП {self.idTP.TpName}"} от {self.creationDate}"
 
