@@ -32,7 +32,7 @@ class GOST(models.Model):
     lastModified = models.DateField(auto_now=True, null=False, blank=False, verbose_name='Дата последнего изменения')
     file = models.FileField(upload_to ='GOST', verbose_name='Файл ГОСТ')
     idCreator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='id Создателя')
-
+    gostNameReal = models.CharField(blank=False, db_column='GostNameReal', default="No name", unique=False, null=False, max_length=128, verbose_name='Наименование реальное')
     def __str__(self) -> str:
         return self.gostName
 

@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 class GOSTSerializer(serializers.ModelSerializer):
     class Meta:
         model = GOST
-        fields = ['id', 'gostName','file', 'idCreator', 'creationDate', 'lastModified']
+        fields = ['id', 'gostName','file', 'idCreator', 'creationDate', 'lastModified', 'gostNameReal']
 
 class GOSTDOCKSerializer(serializers.ModelSerializer):
     class Meta:
